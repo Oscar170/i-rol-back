@@ -1,0 +1,15 @@
+version: '3'
+services: 
+  user-api:
+    build: .
+    links:
+      - redis:redis
+    depends_on: 
+      - redis
+  redis:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"
+    volumes: 
+      - /opt/data/redis:/data
