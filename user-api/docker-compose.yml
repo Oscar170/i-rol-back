@@ -3,13 +3,17 @@ services:
   user-api:
     build: .
     links:
-      - redis:redis
-    depends_on: 
-      - redis
-  redis:
-    image: redis
-    command: ["redis-server", "--appendonly", "yes"]
+      - mongo:mongo
+    environment:
+      - MONGO_ENPOINT=mongo:27017
+      - MONGO_DB=irol
     ports:
-      - "6379:6379"
-    volumes: 
-      - /opt/data/redis:/data
+      - "8080:8080"
+    depends_on: 
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/data/irol:/data/db

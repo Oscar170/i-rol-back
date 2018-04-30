@@ -32,3 +32,23 @@
 [prune]
   go-tests = true
   unused-packages = true
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/oscar170/i-rol-back"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/Oscar170/i-rol-back"
+
+[[constraint]]
+  name = "github.com/go-redis/redis"
+  version = "6.10.2"
+
+[[constraint]]
+  name = "github.com/go-sql-driver/mysql"
+  version = "1.3.0"
+
+[[constraint]]
+  name = "github.com/dgrijalva/jwt-go"
+  version = "3.2.0"

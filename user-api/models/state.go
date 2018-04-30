@@ -1,14 +1,11 @@
 package models
 
-type Status struct {
+// Health data to verify the server is working.
+type Health struct {
 	Active bool `json:"active"`
 }
 
-type User struct {
-	_id      string
-	name     string
-	mail     string
-	password string
-	friends  []string
-	rooms    []string
+type Status struct {
+	Success bool   `json:"success"`
+	Error   string `json:"error,omitempty"`
 }
