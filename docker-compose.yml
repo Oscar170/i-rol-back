@@ -1,0 +1,27 @@
+version: '3'
+services: 
+  irol-node:
+    build: ./irol-node
+    ports:
+      - "4000:4000"
+    links:
+      - user-api:user-api
+    depends_on: 
+      - user-api
+  user-api:
+    build: ./user-api
+    links:
+      - mongo:mongo
+    environment:
+      - MONGO_ENPOINT=mongo:27017
+      - MONGO_DB=irol
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - mongo
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/data/irol:/data/db

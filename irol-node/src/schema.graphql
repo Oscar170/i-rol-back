@@ -1,0 +1,16 @@
+type Query {
+  _: Boolean
+}
+
+type Mutation {
+  _: Boolean
+}
+
+type Auth {
+  token: String!
+}
+
+type Status {
+  success: Boolean!
+  error: String
+}

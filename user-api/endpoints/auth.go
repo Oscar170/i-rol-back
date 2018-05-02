@@ -28,6 +28,7 @@ func SignIn(urlParams http.UrlParam, queryParams http.QueryParams, body http.Get
 	if uErr != nil || pErr != nil {
 		return models.Status{
 			Success: false,
+			Error:   "Base 64 username/password invalid.",
 		}
 	}
 
@@ -39,6 +40,7 @@ func SignIn(urlParams http.UrlParam, queryParams http.QueryParams, body http.Get
 	if err != nil {
 		return models.Status{
 			Success: false,
+			Error:   "Username/Password invalid.",
 		}
 	}
 
