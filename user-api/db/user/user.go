@@ -27,7 +27,7 @@ func init() {
 	}
 	if !includes(collecetions, collectionName) {
 		userCollection.EnsureIndex(mgo.Index{
-			Key:    []string{"name"},
+			Key:    []string{"username"},
 			Unique: true,
 		})
 
@@ -46,14 +46,14 @@ func IsValid(u models.User) (int, error) {
 	return userCollection.Find(bson.M{
 		"$or": []bson.M{
 			bson.M{"email": u.Email},
-			bson.M{"name": u.Name},
+			bson.M{"username": u.Username},
 		},
 	}).Count()
 }
 
 func Restore(u *models.User, c *models.Credentials) error {
 	return userCollection.Find(bson.M{
-		"email":    c.Username,
+		"username": c.Username,
 		"password": c.Password,
 	}).One(u)
 }

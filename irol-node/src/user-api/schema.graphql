@@ -1,4 +1,12 @@
 extend type Mutation {
   signIn(username: String!, password: String!): Auth!
-  signUp(name: String!, email: String!, password: String!): Status!
+  signUp(username: String!, email: String!, password: String!): Status!
+}
+
+type User {
+  _id: String
+  username: String
+  email: String
+  friends: [String]
+  rooms: [String]
 }

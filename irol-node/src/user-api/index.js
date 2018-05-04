@@ -11,12 +11,12 @@ export default {
       })
       .then(r => r.json())
     },
-    signUp: (parent, { name, email, password }) => {
+    signUp: (parent, { username, email, password }) => {
       return fetch('http://user-api:8080/sign-up', {
         method: 'post',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
-          name,
+          username,
           email,
           password,
         })

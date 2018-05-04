@@ -28,7 +28,7 @@ func SignIn(urlParams http.UrlParam, queryParams http.QueryParams, body http.Get
 	if uErr != nil || pErr != nil {
 		return models.Status{
 			Success: false,
-			Error:   "Base 64 username/password invalid.",
+			Error:   "Base 64 Username/Password invalid.",
 		}
 	}
 
@@ -48,7 +48,7 @@ func SignIn(urlParams http.UrlParam, queryParams http.QueryParams, body http.Get
 
 	claims := token.Claims.(jwt.MapClaims)
 	claims["_id"] = user.ID
-	claims["name"] = user.Name
+	claims["name"] = user.Username
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 	t, err := token.SignedString([]byte(jwtSecret))
@@ -65,7 +65,7 @@ func SignUp(urlParams http.UrlParam, queryParams http.QueryParams, body http.Get
 	body(user)
 
 	emptyFields := user.Email == "" ||
-		user.Name == "" ||
+		user.Username == "" ||
 		user.Password == ""
 
 	if emptyFields {

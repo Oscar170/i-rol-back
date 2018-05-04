@@ -1,5 +1,6 @@
 import 'isomorphic-fetch'
 import { GraphQLServer } from 'graphql-yoga'
+import authMiddleware from './middlewares/auth'
 
 import BaseSchema from './schema.graphql'
 
@@ -16,6 +17,8 @@ const resolvers = {
 const server = new GraphQLServer({
   typeDefs: [ BaseSchema, UserApiSchema ],
   resolvers,
+  context: req => ({ ...req }),
+  middlewares: [ authMiddleware ],
 })
 
 server.start(() => console.log(`Server is running on http://localhost:4000`))
